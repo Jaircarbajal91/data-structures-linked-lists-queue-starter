@@ -12,6 +12,12 @@ class SinglyLinkedList {
         this.head = head;
         this.length = 0;
     }
+    addToHead(val) {
+         let newNode = new SinglyLinkedNode(val);
+         newNode.next = this.head;
+         this.head = newNode;
+         this.length++;
+    }
 
     addToTail(val) {
         let newNode = new SinglyLinkedNode(val);
@@ -70,7 +76,7 @@ class SinglyLinkedList {
 
     averageValue() {
         // Returns the average value of all the nodes
-
+        // O(n)
         // Write your hypothesis on the time complexity of this method here
         return this.sumOfNodes() /this.listLength()
     }
@@ -84,11 +90,11 @@ class SinglyLinkedList {
         while (curr.next) {
             if (index === n) {
                 return curr;
-            } 
+            }
             index ++;
-        
+
             curr = curr.next;
-        } 
+        }
 
         return -1
     }
@@ -121,28 +127,15 @@ class SinglyLinkedList {
         // Returns a new reversed version of the linked list
 
         // Write your hypothesis on the time complexity of this method here
-        // let array = []
-        // let curr = this.head;
-        // while (curr.next) {
-        //     array.unshift(curr);
-        //     curr = curr.next;
-        // }
-        // array.unshift(curr.next);
-        // for( let i = 0; i < array.length -1; i++) {
-        //     let ele = array[i];
-        //     ele.next = array[i+1]
-        //     let res = ele;
-        // }
-        // return res;
-        let newList = new SinglyLinkedList()
+
+        let newList = new SinglyLinkedList();
         let curr = this.head;
-        while (curr.next) {
+        while(curr.next) {
             newList.addToHead(curr.value);
             curr = curr.next;
         }
         newList.addToHead(curr.value);
-        return newList
-
+        return newList;
     }
 
     reverseInPlace() {
@@ -185,8 +178,7 @@ class DoublyLinkedList {
 
     addToTail(val) {
         let newNode = new DoublyLinkedNode(val);
-        this.length++
-
+        this.length++;
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
@@ -216,7 +208,7 @@ class DoublyLinkedList {
             }
             curr = curr.prev
             index++
-        } 
+        }
 
 
     }
@@ -249,34 +241,6 @@ class DoublyLinkedList {
         // Write your hypothesis on the time complexity of this method here
     }
 }
-
-list = new SinglyLinkedList();
-
-// list.addToTail(1);
-// list.addToTail(2);
-// list.addToTail(3);
-// console.log(list.findMid().value)
-
-// list.addToTail(4);
-// list.addToTail(5);
-// list.addToTail(6);
-// console.log(list.findMid().value)
-// console.log("list~~~~~~~",list)
-// list.addToTail(13);
-// list.addToTail(21);
-// // list.addToTail(32);
-// // list.addToTail(14);
-// // list.addToTail(53);
-// list.reverse()
-// console.log("list222222",list)
-
-dll = new DoublyLinkedList();
-// dll.addToTail(1);
-dll.addToTail(2);
-dll.addToTail(3);
-console.log(dll)
-// console.log(dll.findMid())
-
 
 module.exports = {
     SinglyLinkedNode,

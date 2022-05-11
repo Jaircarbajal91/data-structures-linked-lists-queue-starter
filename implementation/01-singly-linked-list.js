@@ -12,31 +12,36 @@ class SinglyLinkedList {
         this.length = 0;
     }
 
-    addToHead(val) { 
-        // Add node of val to head of linked list
+    addToHead(val) {
 
-        // Write your hypothesis on the time complexity of this method here
+    }
+
+    listLength() {
+        const list = new SinglyLinkedList();
+        return list.listLength();
     }
 
     addToTail(val) {
         // There are bugs in this method! Fix them!!!
         // Write your hypothesis on the time complexity of this method here
+        // O(n): Because we don't have a pointer to the tail, we need to iterate over the entire linked list until the next property is null.
 
         // Add node of val to tail of linked list
-        let newNode = new SinglyLinkedNode(data);
-
-        if (!head) {
-            head = newNode;
-            return head;
+        let newNode = new SinglyLinkedNode(val);
+        this.length++;
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+            return this.head;
         }
 
-        let curr = head;
-        while (curr) {
-            curr = current.next;
+        let curr = this.head;
+        while (curr.next) {
+            curr = curr.next;
         }
         curr.next = newNode;
 
-        return head;
+        return this.head;
     }
 
     removeFromHead() {
@@ -59,10 +64,19 @@ class SinglyLinkedList {
 
     print() {
         // Print out the linked list
-        
+
         // Write your hypothesis on the time complexity of this method here
     }
 }
+
+// let list = new SinglyLinkedList();
+
+// list.addToTail(1);
+// list.addToTail(2);
+// list.addToTail(3);
+// list.addToTail(4);
+
+// console.log(list.listLength())//).to.equal(4);
 
 module.exports = {
     SinglyLinkedList,
