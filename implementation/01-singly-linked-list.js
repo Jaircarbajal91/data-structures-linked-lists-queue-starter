@@ -13,12 +13,15 @@ class SinglyLinkedList {
     }
 
     addToHead(val) {
-
+        let newNode = new SinglyLinkedNode(val);
+        newNode.next = this.head;
+        this.head = newNode
+        this.length++;
+        return this;
     }
 
     listLength() {
-        const list = new SinglyLinkedList();
-        return list.listLength();
+        return this.length;
     }
 
     addToTail(val) {
@@ -31,8 +34,7 @@ class SinglyLinkedList {
         this.length++;
         if (!this.head) {
             this.head = newNode;
-            this.tail = newNode;
-            return this.head;
+            return this;
         }
 
         let curr = this.head;
@@ -41,42 +43,59 @@ class SinglyLinkedList {
         }
         curr.next = newNode;
 
-        return this.head;
+        return this;
     }
 
     removeFromHead() {
         // Remove node at head
-
         // Write your hypothesis on the time complexity of this method here
+        if (!this.head) return;
+        let oldHead = this.head;
+        this.head = this.head.next;
+        this.length--;
+        return oldHead;
     }
 
     removeFromTail() {
         // Remove node at tail
 
         // Write your hypothesis on the time complexity of this method here
+        if (!this.head) return;
+        if(this.length === 1) {
+            let oldTail = this.head;
+            this.head = null;
+            this.length--;
+            return oldTail;
+        }
+        let curr = this.head;
+        while(curr.next.next) {
+            curr = curr.next;
+        }
+        let oldTail = curr.next;
+        curr.next = null;
+        this.length--;
+        return oldTail;
     }
 
     peekAtHead() {
         // Return value of head node
-
+        if (!this.head) return;
+        return this.head.value;
         // Write your hypothesis on the time complexity of this method here
     }
 
     print() {
         // Print out the linked list
-
         // Write your hypothesis on the time complexity of this method here
+        if (!this.head) return;
+        let curr = this.head;
+        while(curr.next) {
+            console.log(curr.value);
+            curr = curr.next;
+        }
+        console.log(curr.value);
     }
 }
-
-// let list = new SinglyLinkedList();
-
-// list.addToTail(1);
-// list.addToTail(2);
-// list.addToTail(3);
-// list.addToTail(4);
-
-// console.log(list.listLength())//).to.equal(4);
 
 module.exports = {
     SinglyLinkedList,
